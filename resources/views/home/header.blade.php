@@ -86,7 +86,14 @@
                     </a>
                     @if (Route::has('login'))
                         @auth
-                        <a href="{{ route('logout') }}" class="btn btn-danger m-2">Logout</a>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+        
+                            <x-responsive-nav-link href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-danger m-2 text-center">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
                         @else 
                         <a href="{{ route('login') }}" class="btn btn-primary m-2">Login</a>
 
